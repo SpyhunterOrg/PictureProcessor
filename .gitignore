@@ -1,0 +1,14 @@
+*.obj
+*.idb
+*.pdb
+*.user
+*.ncb
+*.suo
+*.manifest
+*.manifest.res
+BuildLog.htm
+bin/*.*
+build_tmp/*.*
+
+
+

@@ -1,0 +1,15 @@
+// Interface
+#pragma once
+#include <iostream>
+#include "..\common\defines.h"
+#include "..\common\timestamp.hpp"
+
+//--------------------------------------------------------------------------------------------------------------------------------
+class IImgProc
+{
+public:
+	virtual void GetImgExifDate(IN std::string & ImgPath, OUT std::string & RetDateTime, OUT std::string & Date, OUT std::string & Time) = 0;	// get picture date, saved in EXIF
+	virtual void GetImgExifDateTime(IN std::string & ImgPath, OUT time::timestamp & TimeStamp) = 0;
+	virtual void SetImgExifDateTime(IN std::string & ImgPath, IN const time::timestamp & newImgDateTime) = 0;
+};
+//--------------------------------------------------------------------------------------------------------------------------------

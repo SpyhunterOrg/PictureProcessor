@@ -1,4 +1,3 @@
-//#include "stdafx.h"
 #include "AdvancedLogger.h"
 
 using namespace std;

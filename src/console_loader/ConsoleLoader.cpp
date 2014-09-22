@@ -2,6 +2,7 @@
 //
 // 
 #include <iostream>
+#include <memory>
 
 #include "ConsoleLoader.h"
 
@@ -30,7 +31,7 @@ int main(int argc, wchar_t * argv[])
 	//const MODE mode = RENAME_BY_DATE;
 	const MODE mode = SHIFT_DATE;
 
-	IAppController * Interf = new CAppController();
+	auto Interf = std::unique_ptr<IAppController>(new CAppController());
 
 	switch (mode)
 	{
@@ -87,7 +88,7 @@ int main(int argc, wchar_t * argv[])
 	}
 
 
-	delete Interf;
+	//delete Interf;
 
 
 

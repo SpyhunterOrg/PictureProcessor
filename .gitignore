@@ -6,6 +6,8 @@
 *.suo
 *.manifest
 *.manifest.res
+*.sdf
+*.opensdf
 BuildLog.htm
 bin
 build_tmp

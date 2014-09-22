@@ -5,7 +5,10 @@
 //--------------------------------------------------------------------------------------------------------------------------------
 CFileSystemWork::CFileSystemWork()
 {
-
+}
+//--------------------------------------------------------------------------------------------------------------------------------
+CFileSystemWork::~CFileSystemWork()
+{
 }
 //--------------------------------------------------------------------------------------------------------------------------------
 void CFileSystemWork::GetFilesList(IN const std::string & DirPath, const std::string & FileMask, IN bool IncludePath, OUT std::vector<std::string> & FileList)	// Getting list of files in dir

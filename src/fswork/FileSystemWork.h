@@ -18,7 +18,7 @@ class CFileSystemWork : public CFileSystemWorkInterface	// class for working wit
 {
 public:
 	CFileSystemWork();
-	~CFileSystemWork();
+	virtual ~CFileSystemWork();
 
 	virtual void GetFilesList(IN const std::string & DirPath, const std::string & FileMask, IN bool IncludePath, OUT std::vector<std::string> & FileList);	// Getting list of files in dir
 	virtual void GetJPEGFilesList(IN const std::string & DirPath, IN bool IncludePath, OUT std::vector<std::string> & FileList);	// Getting list of JPEG and JPG files in dir

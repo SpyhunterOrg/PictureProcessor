@@ -7,6 +7,9 @@
 class IAppController
 {
 public:
+	IAppController(){}
+	virtual ~IAppController(){}
+
 	virtual void CopyAndRenameFilesToNewDestination(IN const std::string & PathToDirWithImageFiles /*, callback*/) = 0;
 	virtual void ChangeFilesDate(IN const std::string & PathToDirWithImageFiles, IN const time_ns::duration & TimeDuration /*, callback*/) = 0;
 

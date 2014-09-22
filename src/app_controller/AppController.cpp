@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <memory>
 
 #include "..\fswork\IFileSystemWork.h"
 #include "..\fswork\FileSystemWork.h"
@@ -165,27 +166,25 @@ void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFi
 
 	//----------------------------------------------------------------------------------------------------------
 	//1.Get Files List
-	CFileSystemWorkInterface * FSObject = new CFileSystemWork();
 	std::vector<std::string> lst;
-
-	try
 	{
-		FSObject->GetJPEGFilesList(PathToDirWithImageFiles,TRUE,lst);
-	}
-	catch(CErrorsTransport Err)
-	{
-		Err.ErrorOccured("UnableToGetFilesList","CAppController::CopyAndRenameFilesToNewDestination",APPLICATION);
-		delete FSObject;
-		throw Err;
-	}
+		auto FSObject = std::unique_ptr<CFileSystemWorkInterface>(new CFileSystemWork());
 
-	delete FSObject;
+		try
+		{
+			FSObject->GetJPEGFilesList(PathToDirWithImageFiles,TRUE,lst);
+		}
+		catch(CErrorsTransport Err)
+		{
+			Err.ErrorOccured("UnableToGetFilesList","CAppController::CopyAndRenameFilesToNewDestination",APPLICATION);
+			throw Err;
+		}
+	}
 
 	//----------------------------------------------------------------------------------------------------------
 	//2. Get EXIF date and time
 
-	IImgProc * ImpProc = new ImagesProcessor();
-
+	auto ImpProc = std::unique_ptr<IImgProc>(new ImagesProcessor());
 
 	size_t ListSize = lst.size();
 

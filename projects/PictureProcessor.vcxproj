@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AB612153-BE4D-4633-BDE0-C0B0BA70318D}</ProjectGuid>
+    <RootNamespace>PictureProcessor</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.61030.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\bin\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>..\build_tmp\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\bin\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>..\build_tmp\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\externals\cximage600_full\CxImage;..\externals\exiv2-0.23\msvc64\include;..\externals\exiv2-0.23\msvc64\include\exiv2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>..\externals\cximage600_full\CxImage\Debug;..\externals\cximage600_full\jasper\Debug;..\externals\cximage600_full\jpeg\Debug;..\externals\cximage600_full\mng\Debug;..\externals\cximage600_full\png\Debug;..\externals\cximage600_full\raw\Debug;..\externals\cximage600_full\tiff\Debug;..\externals\cximage600_full\zlib\Debug;..\externals\exiv2-0.23\msvc64\exiv2lib\Win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>..\externals\cximage600_full\CxImage\Release;..\externals\cximage600_full\jasper\Release;..\externals\cximage600_full\jpeg\Release;..\externals\cximage600_full\mng\Release;..\externals\cximage600_full\png\Release;..\externals\cximage600_full\raw\Release;..\externals\cximage600_full\tiff\Release;..\externals\cximage600_full\zlib\Release;..\externals\exiv2-0.23\msvc64\exiv2lib\Win32\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\app_controller\AppController.cpp" />
+    <ClCompile Include="..\src\console_loader\ConsoleLoader.cpp" />
+    <ClCompile Include="..\src\errors_processing\AdvancedLogger.cpp" />
+    <ClCompile Include="..\src\errors_processing\Errors.cpp" />
+    <ClCompile Include="..\src\fswork\FileSystemWork.cpp" />
+    <ClCompile Include="..\src\image_processor\ImagesProcessor.cpp" />
+    <ClCompile Include="..\src\image_processor\exif_reader\EXIF.CPP" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\app_controller\AppController.h" />
+    <ClInclude Include="..\src\app_controller\IAppController.h" />
+    <ClInclude Include="..\src\common\commoncode.h" />
+    <ClInclude Include="..\src\common\defines.h" />
+    <ClInclude Include="..\src\common\GlobalSettings.h" />
+    <ClInclude Include="..\src\common\timestamp.hpp" />
+    <ClInclude Include="..\src\console_loader\ConsoleLoader.h" />
+    <ClInclude Include="..\src\errors_processing\AdvancedLogger.h" />
+    <ClInclude Include="..\src\errors_processing\Errors.h" />
+    <ClInclude Include="..\src\fswork\FileSystemWork.h" />
+    <ClInclude Include="..\src\fswork\IFileSystemWork.h" />
+    <ClInclude Include="..\src\image_processor\IImgProc.h" />
+    <ClInclude Include="..\src\image_processor\ImagesProcessor.h" />
+    <ClInclude Include="..\src\image_processor\exif_reader\EXIF.H" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

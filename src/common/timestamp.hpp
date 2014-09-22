@@ -13,7 +13,7 @@
 #include <iomanip>
 #include <windows.h>
 
-namespace time
+namespace time_ns
 {
 
 // forward

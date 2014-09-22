@@ -68,7 +68,7 @@ void ImagesProcessor::GetImgExifDate(IN std::string & ImgPath, OUT std::string &
 	CommonCode::GetSeparateDateAndTimeFromDateTime(RetDateTime, Date, Time);
 }
 //--------------------------------------------------------------------------------------------------------------------------------
-void ImagesProcessor::GetImgExifDateTime(IN std::string & ImgPath, OUT time::timestamp & TimeStamp)
+void ImagesProcessor::GetImgExifDateTime(IN std::string & ImgPath, OUT time_ns::timestamp & TimeStamp)
 {
 	std::string DateTime, Date, Time;
 	GetImgExifDate(ImgPath, DateTime, Date, Time);
@@ -85,7 +85,7 @@ void ImagesProcessor::GetImgExifDateTime(IN std::string & ImgPath, OUT time::tim
 }
 //--------------------------------------------------------------------------------------------------------------------------------
 
-void ImagesProcessor::SetImgExifDateTime(IN std::string & ImgPath, IN const time::timestamp & newImgDateTime/*, IN const std::string & OutDir*/)
+void ImagesProcessor::SetImgExifDateTime(IN std::string & ImgPath, IN const time_ns::timestamp & newImgDateTime/*, IN const std::string & OutDir*/)
 {
 	CErrorsTransport Err(LogFile, LogOut);
 

@@ -111,7 +111,7 @@ namespace CommonCode
 	}
 
 	//---------------------------------------------------------------------------
-	inline bool ParseDateTime(IN const std::string & DateTime, OUT time::timestamp & TimeStamp)
+	inline bool ParseDateTime(IN const std::string & DateTime, OUT time_ns::timestamp & TimeStamp)
 	{
 		const int MAX_DATETIME_STR_LEN = 19;
 		bool res = false;
@@ -167,7 +167,7 @@ namespace CommonCode
 		return res;
 	}
 	//---------------------------------------------------------------------------
-	inline std::string TimeStampToExifString(const time::timestamp &TimeStamp)
+	inline std::string TimeStampToExifString(const time_ns::timestamp &TimeStamp)
 	{
 		long yearL = TimeStamp.year();
 		long monthL = TimeStamp.month();

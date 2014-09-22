@@ -65,7 +65,7 @@ int main(int argc, wchar_t * argv[])
 			//Change EXIF date
 			std::string Pth("D:/FOFOFO");
 
-			const time::duration TimeDuration(0,0,30);
+			const time_ns::duration TimeDuration(0,0,30);
 
 			try
 			{

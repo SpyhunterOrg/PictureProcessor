@@ -159,7 +159,7 @@ void CAppController::CopyAndRenameFilesToNewDestination(IN const std::string & P
 
 //--------------------------------------------------------------------------------------------------------------------------------
 
-void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFiles, IN const time::duration & TimeDuration /*, callback*/)
+void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFiles, IN const time_ns::duration & TimeDuration /*, callback*/)
 {
 	CErrorsTransport Err(LogFile, LogOut);
 
@@ -193,14 +193,14 @@ void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFi
 	{
 		try
 		{
-			time::timestamp ImageDateTime;
+			time_ns::timestamp ImageDateTime;
 			ImpProc->GetImgExifDateTime(lst[i], ImageDateTime);
 			//long day = ImageDateTime.day();
 			//long hour = ImageDateTime.hour();
 			//long minute = ImageDateTime.minute();
 			//long sec = ImageDateTime.second();
 			
-			time::timestamp NewImageDateTime = ImageDateTime + TimeDuration;
+			time_ns::timestamp NewImageDateTime = ImageDateTime + TimeDuration;
 			//long day1 = NewImageDateTime.day();
 			//long hour1 = NewImageDateTime.hour();
 			//long minute1 = NewImageDateTime.minute();

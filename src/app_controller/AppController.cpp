@@ -39,7 +39,7 @@ void CAppController::CopyAndRenameFilesToNewDestination(IN const std::string & P
 
 	//----------------------------------------------------------------------------------------------------------
 	//1.Get Files List
-	CFileSystemWorkInterface * FSObject = new CFileSystemWork();
+	auto FSObject = std::unique_ptr<CFileSystemWorkInterface>(new CFileSystemWork());
 	std::vector<std::string> lst;
 
 	try
@@ -49,15 +49,12 @@ void CAppController::CopyAndRenameFilesToNewDestination(IN const std::string & P
 	catch(CErrorsTransport Err)
 	{
 		Err.ErrorOccured("UnableToGetFilesList","CAppController::CopyAndRenameFilesToNewDestination",APPLICATION);
-		delete FSObject;
 		throw Err;
 	}
 
-	delete FSObject;
-
 	//----------------------------------------------------------------------------------------------------------
 	//2. Get Array Of Dates and Times - filenames
-	IImgProc * ImpProc = new ImagesProcessor();
+	auto ImpProc = std::unique_ptr<IImgProc>(new ImagesProcessor());
 
 	StringStringPairsVector ImgPathAndDateVector;
 	size_t ListSize = lst.size();
@@ -80,8 +77,6 @@ void CAppController::CopyAndRenameFilesToNewDestination(IN const std::string & P
 		{
 			//In case of error do nothing, just skip file
 		}
-
-
 	}
  
 	//------------------------Sort file list by date and time
@@ -129,13 +124,8 @@ void CAppController::CopyAndRenameFilesToNewDestination(IN const std::string & P
 
 	}
 
-	delete ImpProc;
-
 	//----------------------------------------------------------------------------------------------------------
 	//3. Copy all files to new destination with new names.
-
-	FSObject = new CFileSystemWork();
-	
 	for (size_t i= 0; i < ListSize; i++)
 	{
 		try
@@ -151,9 +141,6 @@ void CAppController::CopyAndRenameFilesToNewDestination(IN const std::string & P
 			Err.ErrorOccured("UnableToCopyFile","CAppController::CopyAndRenameFilesToNewDestination",APPLICATION);
 		}
 	}
-
-	delete FSObject;
-
 	//----------------------------------------------------------------------------------------------------------
 	
 }

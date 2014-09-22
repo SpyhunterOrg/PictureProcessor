@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{58add35b-f378-44d2-bc94-01c43722b730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\app_controller">
+      <UniqueIdentifier>{9b5fda29-cada-4ee2-9b16-03bfadf2eef9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\common">
+      <UniqueIdentifier>{144b7895-3804-45c3-9cd0-82847c7ad88e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\console_loader">
+      <UniqueIdentifier>{42584738-1f43-4ebe-8b93-e71c2cedca52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\errors_processing">
+      <UniqueIdentifier>{2dd7d998-d4f4-4f6f-b6d4-6514dca8dc84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\fswork">
+      <UniqueIdentifier>{70e7fc63-b278-4d8a-b6f4-f072e4dfd3ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\image_processor">
+      <UniqueIdentifier>{2349aad5-debd-4aec-aeee-92e0db390fbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\image_processor\exif_reader">
+      <UniqueIdentifier>{48add43a-9541-4d6d-90d1-97ebc42002ad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\app_controller\AppController.cpp">
+      <Filter>src\app_controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\console_loader\ConsoleLoader.cpp">
+      <Filter>src\console_loader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\errors_processing\AdvancedLogger.cpp">
+      <Filter>src\errors_processing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\errors_processing\Errors.cpp">
+      <Filter>src\errors_processing</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\fswork\FileSystemWork.cpp">
+      <Filter>src\fswork</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\image_processor\ImagesProcessor.cpp">
+      <Filter>src\image_processor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\image_processor\exif_reader\EXIF.CPP">
+      <Filter>src\image_processor\exif_reader</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\app_controller\AppController.h">
+      <Filter>src\app_controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\app_controller\IAppController.h">
+      <Filter>src\app_controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\commoncode.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\defines.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\GlobalSettings.h">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\common\timestamp.hpp">
+      <Filter>src\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\console_loader\ConsoleLoader.h">
+      <Filter>src\console_loader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\errors_processing\AdvancedLogger.h">
+      <Filter>src\errors_processing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\errors_processing\Errors.h">
+      <Filter>src\errors_processing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\fswork\FileSystemWork.h">
+      <Filter>src\fswork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\fswork\IFileSystemWork.h">
+      <Filter>src\fswork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\image_processor\IImgProc.h">
+      <Filter>src\image_processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\image_processor\ImagesProcessor.h">
+      <Filter>src\image_processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\image_processor\exif_reader\EXIF.H">
+      <Filter>src\image_processor\exif_reader</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

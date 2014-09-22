@@ -10,6 +10,31 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\app_controller\AppController.cpp" />
+    <ClCompile Include="..\src\console_loader\ConsoleLoader.cpp" />
+    <ClCompile Include="..\src\errors_processing\AdvancedLogger.cpp" />
+    <ClCompile Include="..\src\errors_processing\Errors.cpp" />
+    <ClCompile Include="..\src\fswork\FileSystemWork.cpp" />
+    <ClCompile Include="..\src\image_processor\exif_reader\EXIF.CPP" />
+    <ClCompile Include="..\src\image_processor\ImagesProcessor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\app_controller\AppController.h" />
+    <ClInclude Include="..\src\app_controller\IAppController.h" />
+    <ClInclude Include="..\src\common\commoncode.h" />
+    <ClInclude Include="..\src\common\defines.h" />
+    <ClInclude Include="..\src\common\GlobalSettings.h" />
+    <ClInclude Include="..\src\common\timestamp.hpp" />
+    <ClInclude Include="..\src\console_loader\ConsoleLoader.h" />
+    <ClInclude Include="..\src\errors_processing\AdvancedLogger.h" />
+    <ClInclude Include="..\src\errors_processing\Errors.h" />
+    <ClInclude Include="..\src\fswork\FileSystemWork.h" />
+    <ClInclude Include="..\src\fswork\IFileSystemWork.h" />
+    <ClInclude Include="..\src\image_processor\exif_reader\EXIF.H" />
+    <ClInclude Include="..\src\image_processor\IImgProc.h" />
+    <ClInclude Include="..\src\image_processor\ImagesProcessor.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AB612153-BE4D-4633-BDE0-C0B0BA70318D}</ProjectGuid>
     <RootNamespace>PictureProcessor</RootNamespace>
@@ -18,13 +43,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v110_xp</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v110_xp</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -89,31 +114,6 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\src\app_controller\AppController.cpp" />
-    <ClCompile Include="..\src\console_loader\ConsoleLoader.cpp" />
-    <ClCompile Include="..\src\errors_processing\AdvancedLogger.cpp" />
-    <ClCompile Include="..\src\errors_processing\Errors.cpp" />
-    <ClCompile Include="..\src\fswork\FileSystemWork.cpp" />
-    <ClCompile Include="..\src\image_processor\ImagesProcessor.cpp" />
-    <ClCompile Include="..\src\image_processor\exif_reader\EXIF.CPP" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\src\app_controller\AppController.h" />
-    <ClInclude Include="..\src\app_controller\IAppController.h" />
-    <ClInclude Include="..\src\common\commoncode.h" />
-    <ClInclude Include="..\src\common\defines.h" />
-    <ClInclude Include="..\src\common\GlobalSettings.h" />
-    <ClInclude Include="..\src\common\timestamp.hpp" />
-    <ClInclude Include="..\src\console_loader\ConsoleLoader.h" />
-    <ClInclude Include="..\src\errors_processing\AdvancedLogger.h" />
-    <ClInclude Include="..\src\errors_processing\Errors.h" />
-    <ClInclude Include="..\src\fswork\FileSystemWork.h" />
-    <ClInclude Include="..\src\fswork\IFileSystemWork.h" />
-    <ClInclude Include="..\src\image_processor\IImgProc.h" />
-    <ClInclude Include="..\src\image_processor\ImagesProcessor.h" />
-    <ClInclude Include="..\src\image_processor\exif_reader\EXIF.H" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

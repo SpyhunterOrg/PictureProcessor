@@ -1,4 +1,6 @@
 #pragma once
+#ifndef COMMON_CODE_H
+#define COMMON_CODE_H
 
 
 #include <Windows.h>
@@ -180,18 +182,18 @@ namespace CommonCode
 		//outString.push_back()
 
 		std::stringstream ss;
-		ss << static_cast<int>(yearL);
+		ss << std::setw(4) << std::setfill('0')  << static_cast<int>(yearL);
 		ss << (":");
-		ss << static_cast<int>(monthL);
+		ss << std::setw(2) << std::setfill('0')  << static_cast<int>(monthL);
 		ss << (":");
-		ss << static_cast<int>(dayL);
+		ss << std::setw(2) << std::setfill('0')  << static_cast<int>(dayL);
 		
 		ss << (" ");
-		ss << static_cast<int>(hourL);
+		ss << std::setw(2) << std::setfill('0')  << static_cast<int>(hourL);
 		ss << (":");
-		ss << static_cast<int>(minL);
+		ss << std::setw(2) << std::setfill('0')  << static_cast<int>(minL);
 		ss << (":");
-		ss << static_cast<int>(secL);
+		ss << std::setw(2) << std::setfill('0')  << static_cast<int>(secL);
 
 		outString = ss.str();
 
@@ -215,6 +217,34 @@ namespace CommonCode
 		}
 	};
 	//---------------------------------------------------------------------------
+	// Create a string with last error message
+	inline std::string GetLastErrorStdStr()
+	{
+		DWORD error = GetLastError();
+		if (error)
+		{
+			LPVOID lpMsgBuf;
+			DWORD bufLen = FormatMessage(
+				FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+				NULL,
+				error,
+				MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+				(LPTSTR) &lpMsgBuf,
+				0, NULL );
+			if (bufLen)
+			{
+				LPCSTR lpMsgStr = (LPCSTR)lpMsgBuf;
+				std::string result(lpMsgStr, lpMsgStr+bufLen);
 
+				LocalFree(lpMsgBuf);
+
+				return result;
+			}
+		}
+		return std::string();
+	}
+	//---------------------------------------------------------------------------
 
 }
+
+#endif

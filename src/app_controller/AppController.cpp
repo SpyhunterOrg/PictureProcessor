@@ -147,7 +147,7 @@ void CAppController::CopyAndRenameFilesToNewDestination(IN const std::string & P
 
 //--------------------------------------------------------------------------------------------------------------------------------
 
-void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFiles, IN const time_ns::duration & TimeDuration /*, callback*/)
+void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFiles, IN const std::string & OutputFolder,  IN const time_ns::duration & TimeDuration /*, callback*/)
 {
 	CErrorsTransport Err(LogFile, LogOut);
 
@@ -192,13 +192,14 @@ void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFi
 			//long minute1 = NewImageDateTime.minute();
 			//long sec1 = NewImageDateTime.second();
 
-			ImpProc->SetImgExifDateTime(lst[i], NewImageDateTime);
+			ImpProc->SetImgExifDateTime(lst[i], OutputFolder, NewImageDateTime);
 
 		}
 		catch(CErrorsTransport Err)
 		{
 			Err.ErrorOccured("UnableToChangeFileDateAndTime", "CAppController::ChangeFilesDate", APPLICATION);
 			Err.SetErrorDescription("Unable To Change File Date And Time.");
+			throw Err;
 		}
 	}
 

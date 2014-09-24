@@ -1,4 +1,8 @@
 #pragma once
+
+#include <gdiplus.h>
+#include <GdiPlusHeaders.h>
+
 #include <iostream>
 #include "IImgProc.h"	// interface of library
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -9,9 +13,12 @@ public:
 	//virtual void SetImgExifDateTime(IN std::string & ImgPath, IN std::string & NewImgDate, IN std::string & NewImgTime);
 
 	virtual void GetImgExifDateTime(IN std::string & ImgPath, OUT time_ns::timestamp & TimeStamp);
-	virtual void SetImgExifDateTime(IN std::string & ImgPath, IN const time_ns::timestamp & newImgDateTime);
+	virtual void SetImgExifDateTime(IN std::string & ImgPath, IN const std::string & outputFolder, IN const time_ns::timestamp & newImgDateTime);
 
 private:
+	int GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
+	void ReplaceDateTimePropertyValue(Gdiplus::Bitmap * bitmap, PROPID propId, const std::string & newDateTimeStr);
+
 	std::string mImgPath;
 };
 //--------------------------------------------------------------------------------------------------------------------------------

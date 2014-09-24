@@ -10,7 +10,7 @@ class CAppController : public IAppController
 {
 public:
 	virtual void CopyAndRenameFilesToNewDestination(IN const std::string & PathToDirWithImageFiles /*, callback*/);
-	virtual void ChangeFilesDate(IN const std::string & PathToDirWithImageFiles, IN const time_ns::duration & TimeDuration /*, callback*/);
+	virtual void ChangeFilesDate(IN const std::string & PathToDirWithImageFiles, IN const std::string & OutputFolder, IN const time_ns::duration & TimeDuration /*, callback*/);
 
 
 private:

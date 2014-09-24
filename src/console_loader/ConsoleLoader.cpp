@@ -70,7 +70,7 @@ int main(int argc, wchar_t * argv[])
 
 			try
 			{
-				Interf->ChangeFilesDate(Pth, TimeDuration);
+				Interf->ChangeFilesDate(Pth, "OUT_NEWDATES", TimeDuration);
 			}
 			catch(CErrorsTransport Err)
 			{

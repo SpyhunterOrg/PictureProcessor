@@ -13,6 +13,6 @@ public:
 
 	virtual void GetImgExifDate(IN std::string & ImgPath, OUT std::string & RetDateTime, OUT std::string & Date, OUT std::string & Time) = 0;	// get picture date, saved in EXIF
 	virtual void GetImgExifDateTime(IN std::string & ImgPath, OUT time_ns::timestamp & TimeStamp) = 0;
-	virtual void SetImgExifDateTime(IN std::string & ImgPath, IN const time_ns::timestamp & newImgDateTime) = 0;
+	virtual void SetImgExifDateTime(IN std::string & ImgPath, IN const std::string & outputFolder, IN const time_ns::timestamp & newImgDateTime) = 0;
 };
 //--------------------------------------------------------------------------------------------------------------------------------

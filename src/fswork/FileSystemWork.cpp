@@ -9,6 +9,7 @@ CFileSystemWork::CFileSystemWork()
 //--------------------------------------------------------------------------------------------------------------------------------
 CFileSystemWork::~CFileSystemWork()
 {
+	int a = 0;
 }
 //--------------------------------------------------------------------------------------------------------------------------------
 void CFileSystemWork::GetFilesList(IN const std::string & DirPath, const std::string & FileMask, IN bool IncludePath, OUT std::vector<std::string> & FileList)	// Getting list of files in dir
@@ -132,9 +133,6 @@ void CFileSystemWork::CopyOneFileToNewDir(IN const std::string & OldFilePath, OU
 	//	throw Err;
 	//}
 
-	//CreateDirectoryA()
-	//SHCreateDirectoryEx()
-
 	// get path to new file
 	size_t Slash = NewFilePath.find_last_of('\\');
 
@@ -143,35 +141,138 @@ void CFileSystemWork::CopyOneFileToNewDir(IN const std::string & OldFilePath, OU
 	
 	std::wstring WPath = CommonCode::StringToWString(Path);
 	
-	//WPath.append(L"/");
 	int ret = SHCreateDirectory(0,WPath.c_str());
-	//int ret = SHCreateDirectory(0,L"E:/tmp/test/123/321");
 	
 	CopyFileA(OldFilePath.c_str(), NewFilePath.c_str(), FALSE);
 }
 //--------------------------------------------------------------------------------------------------------------------------------
-std::string CFileSystemWork::GetOnlyPathToFileFromFullPath(IN const std::string & FullPath)
+void CFileSystemWork::CreateSubfoldersForFilePath(IN const std::wstring & FilePath)
 {
 	CErrorsTransport Err(LogFile, LogOut);
 
-	//try to open sourcefile
-	std::ifstream ifs(FullPath.c_str());
-	if (ifs == NULL)
+	std::wstring FileFoldePath = GetFileFolderPath(FilePath);
+
+	if (!DoesFolderExist(FileFoldePath))
+	{
+		int retCode = SHCreateDirectory(0,FileFoldePath.c_str());
+		if (retCode != 0)
+		{
+			std::string ErrorStr = CommonCode::GetLastErrorStdStr();
+
+			Err.clear();
+			Err.ErrorOccured("UnableToCreateFoldersPath", "fswork.dll CFileSystemWork::CreateSubfoldersForFilePath", USER);
+			std::string ErrMess("Path ");
+			ErrMess.append(CommonCode::WStringToString(FilePath));
+			Err.SetErrorDescription(ErrMess);
+			throw Err;
+		}
+	}
+}
+//--------------------------------------------------------------------------------------------------------------------------------
+std::wstring CFileSystemWork::GetFileFolderPath(IN const std::wstring & FullPath)
+{
+	CErrorsTransport Err(LogFile, LogOut);
+
+	auto SlashPos = FullPath.rfind('\\');
+
+	std::wstring OnlyPath;
+	if (std::wstring::npos != SlashPos)
+	{
+		OnlyPath = FullPath.substr(0, SlashPos);
+	}
+	else
 	{
 		Err.clear();
-		Err.ErrorOccured("FileIsNotExists", "fswork.dll CFileSystemWork::GetOnlyPathToFileFromFullPath", USER);
+		Err.ErrorOccured("NoSlashesInFilePath", "fswork.dll CFileSystemWork::GetFileFolderPath", USER);
 		std::string ErrMess("File ");
-		ErrMess.append(FullPath);
-		ErrMess.append(" is not exists");
+		ErrMess.append(CommonCode::WStringToString(FullPath));
+		ErrMess.append(" does not exist");
 		Err.SetErrorDescription(ErrMess);
 		throw Err;
 	}
 
-	//If file exists get it path
-	int SlashPos = FullPath.find_last_of('\\');
-
-	std::string OnlyPath = FullPath.substr(0, SlashPos+1);
-
 	return OnlyPath;
 }
+////--------------------------------------------------------------------------------------------------------------------------------
+std::wstring CFileSystemWork::GetFileNameFromPath(IN const std::wstring & FilePath)
+{
+	CErrorsTransport Err(LogFile, LogOut);
+
+	std::wstring fileName;
+
+	std::wstring CorrectFilePath(FilePath);
+	CommonCode::ReplaceSymbolInString(CorrectFilePath, L'/', L'\\');
+
+	const size_t last_slash_idx = FilePath.rfind('\\');
+	if (std::string::npos != last_slash_idx)
+	{
+		fileName = FilePath.substr(last_slash_idx + 1, FilePath.length() - last_slash_idx - 1);
+	}
+	else
+	{
+		Err.clear();
+		Err.ErrorOccured("NoSlashesInFilePath", "fswork.dll CFileSystemWork::GetFileNameFromPath", USER);
+		std::string ErrMess("File ");
+		ErrMess.append(CommonCode::WStringToString(FilePath));
+		ErrMess.append(" does not exist");
+		Err.SetErrorDescription(ErrMess);
+		throw Err;
+	}
+	return fileName;
+}
 //--------------------------------------------------------------------------------------------------------------------------------
+bool CFileSystemWork::DoesFolderExist(const std::wstring & FolderPath)
+{
+		DWORD dwAttrib = GetFileAttributesW(FolderPath.c_str());
+
+		return (dwAttrib != INVALID_FILE_ATTRIBUTES && 
+			(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
+}
+//--------------------------------------------------------------------------------------------------------------------------------
+//
+//inline std::wstring GetFileFolderPath(const std::wstring & FilePath)
+//{
+//	std::wstring folderPath;
+//
+//	//using only "//" characters
+//	const size_t last_slash_idx_bs = FilePath.rfind(L'/');
+//	if (last_slash_idx_bs != std::wstring::npos)
+//	{
+//		std::wstring emptyStr;
+//		return emptyStr;
+//	}
+//
+//	const size_t last_slash_idx = FilePath.rfind('\\');
+//	if (std::string::npos != last_slash_idx)
+//	{
+//		folderPath = FilePath.substr(0, last_slash_idx);
+//	}
+//
+//	return folderPath;
+//}
+////---------------------------------------------------------------------------
+//inline std::wstring GetFileNameFromPath(const std::wstring & FilePath)
+//{
+//	std::wstring fileName;
+//
+//	//using only "//" characters
+//	const size_t last_slash_idx_bs = FilePath.rfind(L'/');
+//	if (last_slash_idx_bs != std::wstring::npos)
+//	{
+//		std::wstring emptyStr;
+//		return emptyStr;
+//	}
+//
+//	const size_t last_slash_idx = FilePath.rfind('\\');
+//	if (std::string::npos != last_slash_idx)
+//	{
+//		size_t ll = FilePath.length() - 1;
+//		int a = last_slash_idx + 1;
+//		int b = FilePath.length() - last_slash_idx;
+//
+//		fileName = FilePath.substr(last_slash_idx + 1, FilePath.length() - last_slash_idx - 1);
+//	}
+//
+//	return fileName;
+//}
+//---------------------------------------------------------------------------

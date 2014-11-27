@@ -8,14 +8,14 @@
 #include <sstream>
 #include <fstream>
 #include <map>
+#include <codecvt>
 
 #include "..\common\defines.h"
 #include "..\common\timestamp.hpp"
 
 
-typedef std::map <unsigned int, std::string> AlgListMap;	// Списки алгоритмов
-typedef std::map <unsigned int, std::string>::iterator AlgListMapIter;	// Итератор для списка алгоритмов
-
+//typedef std::map <unsigned int, std::string> AlgListMap;	// Списки алгоритмов
+//typedef std::map <unsigned int, std::string>::iterator AlgListMapIter;	// Итератор для списка алгоритмов
 
 namespace CommonCode
 {
@@ -61,14 +61,23 @@ namespace CommonCode
 
 	}
 	//---------------------------------------------------------------------------
+	inline std::string WStringToString(IN std::wstring InputString)	// Converts std::wstring to std::string
+	{
+		//setup converter
+		typedef std::codecvt_utf8<wchar_t> convert_type;
+		std::wstring_convert<convert_type, wchar_t> converter;
 
+		//use converter (.to_bytes: wstr->str, .from_bytes: str->wstr)
+		std::string OutputString = converter.to_bytes(InputString);\
+		return OutputString;
+	}
+	//---------------------------------------------------------------------------
 	inline long StringToLong(IN const std::string & InputString)
 	{
 		long value = atol(InputString.c_str());
 		return value;
 	}
 	//---------------------------------------------------------------------------
-	
 	inline int ReplaceSymbolInString(std::string & Str, char From, char To)
 	{
 		size_t retval = 0;
@@ -85,7 +94,22 @@ namespace CommonCode
 		return S_OK;
 	}
 	//---------------------------------------------------------------------------
+	inline int ReplaceSymbolInString(std::wstring & Str, wchar_t From, wchar_t To)
+	{
+		size_t retval = 0;
 
+		while(retval != std::wstring::npos)
+		{
+			retval = Str.find(From,0);
+			if (retval != std::wstring::npos)
+			{
+				Str[retval] = To;
+			}
+		}
+
+		return S_OK;
+	}
+	//---------------------------------------------------------------------------
 	inline int ChangeAndAppendSlashes(std::string & InString)
 	{
 		CommonCode::ReplaceSymbolInString(InString,'/','\\');
@@ -98,7 +122,6 @@ namespace CommonCode
 		return 0;
 	}
 	//---------------------------------------------------------------------------
-
 	inline bool GetSeparateDateAndTimeFromDateTime(IN const std::string & DateTime, OUT std::string & Date, OUT std::string & Time)
 	{
 		if (DateTime.size() < 19)//2DO - refactor DateTime in to the one format
@@ -111,7 +134,6 @@ namespace CommonCode
 		
 		return true;
 	}
-
 	//---------------------------------------------------------------------------
 	inline bool ParseDateTime(IN const std::string & DateTime, OUT time_ns::timestamp & TimeStamp)
 	{
@@ -169,7 +191,7 @@ namespace CommonCode
 		return res;
 	}
 	//---------------------------------------------------------------------------
-	inline std::string TimeStampToExifString(const time_ns::timestamp &TimeStamp)
+	inline std::string TimeStampToExifString(const time_ns::timestamp & TimeStamp)
 	{
 		long yearL = TimeStamp.year();
 		long monthL = TimeStamp.month();
@@ -200,7 +222,6 @@ namespace CommonCode
 		return outString;
 	}
 	//---------------------------------------------------------------------------
-
 	template <class TInterface, class T>
 	class Instantiator
 	{
@@ -244,7 +265,5 @@ namespace CommonCode
 		return std::string();
 	}
 	//---------------------------------------------------------------------------
-
 }
-
 #endif

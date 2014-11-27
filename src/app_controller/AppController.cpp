@@ -39,7 +39,6 @@ void CAppController::CopyAndRenameFilesToNewDestination(IN const std::string & P
 
 	//----------------------------------------------------------------------------------------------------------
 	//1.Get Files List
-	auto FSObject = std::unique_ptr<CFileSystemWorkInterface>(new CFileSystemWork());
 	std::vector<std::string> lst;
 
 	try
@@ -147,7 +146,7 @@ void CAppController::CopyAndRenameFilesToNewDestination(IN const std::string & P
 
 //--------------------------------------------------------------------------------------------------------------------------------
 
-void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFiles, IN const std::string & OutputFolder,  IN const time_ns::duration & TimeDuration /*, callback*/)
+void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFiles, IN const std::wstring & OutputFolder,  IN const time_ns::duration & TimeDuration /*, callback*/)
 {
 	CErrorsTransport Err(LogFile, LogOut);
 
@@ -155,7 +154,6 @@ void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFi
 	//1.Get Files List
 	std::vector<std::string> lst;
 	{
-		auto FSObject = std::unique_ptr<CFileSystemWorkInterface>(new CFileSystemWork());
 
 		try
 		{
@@ -192,7 +190,12 @@ void CAppController::ChangeFilesDate(IN const std::string & PathToDirWithImageFi
 			//long minute1 = NewImageDateTime.minute();
 			//long sec1 = NewImageDateTime.second();
 
-			ImpProc->SetImgExifDateTime(lst[i], OutputFolder, NewImageDateTime);
+			std::wstring ImagePath = CommonCode::StringToWString(lst[i]);
+			std::wstring ImageNewPath = CalculateImageNewPath(ImagePath, OutputFolder);
+
+			FSObject->CreateSubfoldersForFilePath(ImageNewPath);
+						
+			ImpProc->SetImgExifDateTime(ImagePath, ImageNewPath, NewImageDateTime);
 
 		}
 		catch(CErrorsTransport Err)
@@ -216,7 +219,6 @@ void CAppController::GetNewFolderAndFileNames(IN std::string OldName,
 
 	//Parse time and Date - 2DOo: check on other images
 	//"2009:05:09 14:23:39" - on Samsung i900
-
 
 
 	// Moved to special method
@@ -247,23 +249,14 @@ void CAppController::GetNewFolderAndFileNames(IN std::string OldName,
 	size_t LastSlashPos = OldName.find_last_of('\\');
 	size_t OldNameLength = (OldName.size() - LastSlashPos - 1) - (OldExtension.size() + 1);
 	std::string OldNameWithoutPathAndExtension = OldName.substr(LastSlashPos+1,OldNameLength);
-	
 
 	std::stringstream stream;
 	stream << NumberForCurrentFolder;
 	std::string NumberForCurrentFolderString = stream.str();
 
-
 	// GetOldPath
 	std::string OldPath = OldName.substr(0,LastSlashPos+1);
-
-//IMG_2682-2010_02_28-09_08.jpg
-         //2008_03_07-05_40_46-0.jpg
-
-
-//2008_03_07__05_40_46__0.jpg
 	
-
 	NewName.clear();
 	NewName.append(OldPath);
 	NewName.append(NewSubfolderName);
@@ -279,5 +272,20 @@ void CAppController::GetNewFolderAndFileNames(IN std::string OldName,
 	NewName.append(OldExtension);
 
 }
-
 //--------------------------------------------------------------------------------------------------------------------------------
+std::wstring CAppController::CalculateImageNewPath(const std::wstring & OldFilePath, const std::wstring & OutputFolderName)
+{
+	std::wstring imageFolderPath = FSObject->GetFileFolderPath(OldFilePath);
+	std::wstring imageName = FSObject->GetFileNameFromPath(OldFilePath);
+
+	std::wstring outImgPathWstr = imageFolderPath + L"\\" + OutputFolderName + L"\\" + imageName;
+
+	return outImgPathWstr;
+}
+//--------------------------------------------------------------------------------------------------------------------------------
+CAppController::CAppController()
+{
+	FSObject.reset(new CFileSystemWork());
+}
+//--------------------------------------------------------------------------------------------------------------------------------
+

@@ -48,6 +48,7 @@ int main(int argc, wchar_t * argv[])
 			catch(CErrorsTransport Err)
 			{
 				MessageBoxA(0,"Не удалось скопировать файлы в новый каталог","Error in Loader", MB_OK);
+				break;
 			}
 
 			MessageBoxA(0,"Файлы успешно скопированы!","Ок", MB_OK);
@@ -66,15 +67,16 @@ int main(int argc, wchar_t * argv[])
 			//Change EXIF date
 			std::string Pth("D:/FOFOFO");
 
-			const time_ns::duration TimeDuration(2,0,0);
+			const time_ns::duration TimeDuration(0,10,0);
 
 			try
 			{
-				Interf->ChangeFilesDate(Pth, "OUT_NEWDATES", TimeDuration);
+				Interf->ChangeFilesDate(Pth, L"OUT_NEWDATES", TimeDuration);
 			}
 			catch(CErrorsTransport Err)
 			{
 				MessageBoxA(0,"Не удалось изменить дату файлов","Error in Loader", MB_OK);
+				break;
 			}
 
 			MessageBoxA(0,"Дата файлов успешно изменена!","Ок", MB_OK);

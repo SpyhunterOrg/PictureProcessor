@@ -85,12 +85,12 @@ void ImagesProcessor::GetImgExifDateTime(IN std::string & ImgPath, OUT time_ns::
 }
 //--------------------------------------------------------------------------------------------------------------------------------
 
-void ImagesProcessor::SetImgExifDateTime(IN std::string & ImgPath, IN const std::string & outputFolder, IN const time_ns::timestamp & newImgDateTime/*, IN const std::string & OutDir*/)
+void ImagesProcessor::SetImgExifDateTime(IN std::wstring & ImgPath, IN const std::wstring & outputFilePath, IN const time_ns::timestamp & newImgDateTime/*, IN const std::string & OutDir*/)
 {
 	CErrorsTransport Err(LogFile, LogOut);
 
 	Gdiplus::Status stat;
-	CommonCode::ReplaceSymbolInString(ImgPath,'/','\\');
+	CommonCode::ReplaceSymbolInString(ImgPath,L'/',L'\\');
 	std::string newImgDateTimeStr = CommonCode::TimeStampToExifString(newImgDateTime);
 
 	// Initialize GDI+
@@ -109,23 +109,23 @@ void ImagesProcessor::SetImgExifDateTime(IN std::string & ImgPath, IN const std:
 		throw Err;
 	}
 
-	std::wstring imgPathWstr = CommonCode::StringToWString(ImgPath);
-	Gdiplus::Bitmap * bitmap = new Gdiplus::Bitmap(imgPathWstr.c_str());
+	Gdiplus::Bitmap * bitmap = new Gdiplus::Bitmap(ImgPath.c_str());
 	
 	ReplaceDateTimePropertyValue(bitmap, PropertyTagExifDTOrig, newImgDateTimeStr);
 	ReplaceDateTimePropertyValue(bitmap, PropertyTagExifDTDigitized, newImgDateTimeStr);
 	ReplaceDateTimePropertyValue(bitmap, PropertyTagDateTime, newImgDateTimeStr);
 
-	stat = bitmap->Save(imgPathWstr.c_str(), &clsid, NULL);
+	stat = bitmap->Save(outputFilePath.c_str(), &clsid, NULL);
 	if(stat != Gdiplus::Ok)
 	{
 		std::string errorMessage = CommonCode::GetLastErrorStdStr();
+		std::string ImgPathStr = CommonCode::WStringToString(ImgPath);
 
 		Err.clear();
 		Err.ErrorOccured("UnableToSaveFileWithNewDateTime", "ImagesProcessor::SetImgExifDateTime", USER);
-		Err.ErrorOccured(ImgPath.c_str(), "ImagesProcessor::SetImgExifDateTime", USER);
+		Err.ErrorOccured(ImgPathStr.c_str(), "ImagesProcessor::SetImgExifDateTime", USER);
 		std::string ErrMess("Unable to write date time stamp to the file .");
-		ErrMess.append(ImgPath.c_str());
+		ErrMess.append(ImgPathStr.c_str());
 		ErrMess.append("]. New date and time sting = [");
 		ErrMess.append(newImgDateTimeStr.c_str());
 		ErrMess.append("]. Reason: [");

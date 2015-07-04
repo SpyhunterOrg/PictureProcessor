@@ -105,9 +105,10 @@ void CFileSystemWork::CopyOneFileToNewDir(IN const std::string & OldFilePath, OU
 	CErrorsTransport Err(LogFile, LogOut);
 
 
-	//try to open sourcefile
+	//try to open source file
 	std::ifstream ifs(OldFilePath.c_str());
-	if (ifs == NULL)
+
+	if (ifs.fail())
 	{
 		Err.clear();
 		Err.ErrorOccured("FileIsNotExists", "fswork.dll CFileSystemWork::CopyOneFileToNewDir", USER);

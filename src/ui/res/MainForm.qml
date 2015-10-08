@@ -1,4 +1,5 @@
 import QtQuick 2.4
+import com.mycompany.Test 1.0
 
 Rectangle {
     property alias mouseArea: mouseArea
@@ -13,16 +14,19 @@ Rectangle {
 
     Text {
         anchors.centerIn: parent
-        text: "Hello World"
+        text: test.author
+    }
+
+    Test{
+    id:test
     }
 
 
-    Rectangle
-    {
-        anchors.centerIn: parent
-        width: parent.width/2
-        height: parent.height
-        color: "yellow"
-
-    }
+//    Rectangle
+//    {
+//        anchors.centerIn: parent
+//        width: parent.width/2
+ //       height: parent.height
+  //      color: "yellow"
+   // }
 }

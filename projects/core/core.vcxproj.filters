@@ -27,69 +27,69 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\app_controller\AppController.cpp">
+    <ClCompile Include="..\..\src\app_controller\AppController.cpp">
       <Filter>src\app_controller</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\console_loader\ConsoleLoader.cpp">
+    <ClCompile Include="..\..\src\console_loader\ConsoleLoader.cpp">
       <Filter>src\console_loader</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\errors_processing\AdvancedLogger.cpp">
+    <ClCompile Include="..\..\src\errors_processing\AdvancedLogger.cpp">
       <Filter>src\errors_processing</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\errors_processing\Errors.cpp">
+    <ClCompile Include="..\..\src\errors_processing\Errors.cpp">
       <Filter>src\errors_processing</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\fswork\FileSystemWork.cpp">
+    <ClCompile Include="..\..\src\fswork\FileSystemWork.cpp">
       <Filter>src\fswork</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\image_processor\ImagesProcessor.cpp">
+    <ClCompile Include="..\..\src\image_processor\ImagesProcessor.cpp">
       <Filter>src\image_processor</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\image_processor\exif_reader\EXIF.CPP">
+    <ClCompile Include="..\..\src\image_processor\exif_reader\EXIF.CPP">
       <Filter>src\image_processor\exif_reader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\app_controller\AppController.h">
+    <ClInclude Include="..\..\src\app_controller\AppController.h">
       <Filter>src\app_controller</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\app_controller\IAppController.h">
+    <ClInclude Include="..\..\src\app_controller\IAppController.h">
       <Filter>src\app_controller</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\common\commoncode.h">
+    <ClInclude Include="..\..\src\common\commoncode.h">
       <Filter>src\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\common\defines.h">
+    <ClInclude Include="..\..\src\common\defines.h">
       <Filter>src\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\common\GlobalSettings.h">
+    <ClInclude Include="..\..\src\common\GlobalSettings.h">
       <Filter>src\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\console_loader\ConsoleLoader.h">
+    <ClInclude Include="..\..\src\console_loader\ConsoleLoader.h">
       <Filter>src\console_loader</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\errors_processing\AdvancedLogger.h">
+    <ClInclude Include="..\..\src\errors_processing\AdvancedLogger.h">
       <Filter>src\errors_processing</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\errors_processing\Errors.h">
+    <ClInclude Include="..\..\src\errors_processing\Errors.h">
       <Filter>src\errors_processing</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\fswork\FileSystemWork.h">
+    <ClInclude Include="..\..\src\fswork\FileSystemWork.h">
       <Filter>src\fswork</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\fswork\IFileSystemWork.h">
+    <ClInclude Include="..\..\src\fswork\IFileSystemWork.h">
       <Filter>src\fswork</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\image_processor\IImgProc.h">
+    <ClInclude Include="..\..\src\image_processor\IImgProc.h">
       <Filter>src\image_processor</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\image_processor\ImagesProcessor.h">
+    <ClInclude Include="..\..\src\image_processor\ImagesProcessor.h">
       <Filter>src\image_processor</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\image_processor\exif_reader\EXIF.H">
+    <ClInclude Include="..\..\src\image_processor\exif_reader\EXIF.H">
       <Filter>src\image_processor\exif_reader</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\common\timestamp.h">
+    <ClInclude Include="..\..\src\common\timestamp.h">
       <Filter>src\common</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #pragma once
 #include <iostream>
 #include "..\common\defines.h"
-#include "..\common\timestamp.hpp"
+#include "..\common\timestamp.h"
 
 //--------------------------------------------------------------------------------------------------------------------------------
 class IImgProc

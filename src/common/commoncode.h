@@ -11,7 +11,7 @@
 #include <codecvt>
 
 #include "..\common\defines.h"
-#include "..\common\timestamp.hpp"
+#include "..\common\timestamp.h"
 
 
 //typedef std::map <unsigned int, std::string> AlgListMap;	// Списки алгоритмов

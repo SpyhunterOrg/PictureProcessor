@@ -31,5 +31,21 @@
     <ClCompile Include="..\..\src\ui\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_ui.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\ui\res\ui.qml">
+      <Filter>res</Filter>
+    </None>
+    <None Include="..\..\src\ui\res\MainForm.qml">
+      <Filter>res</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\src\ui\res\ui.qrc">
+      <Filter>res</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 *.obj
 *.idb
 *.pdb
-*.user
 *.ncb
 *.suo
 *.manifest
